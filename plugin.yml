@@ -1,0 +1,41 @@
+name: BlackCheque
+main: BlackTeam\BlackCheque\BlackCheque
+version: 1.0.0
+api: [3.2.0]
+load: POSTWORLD
+author: BlackTeam
+description: Un plugin qui fait de l'argent dans un article pour échanger avec!
+depend: ["EconomyAPI"]
+
+commands:
+ withdraw:
+  description: "Retirer de l'argent et le mettre sur un billet de banque"
+  usage: "/withdraw {value} [count]"
+  permission: banknotes.get
+  aliases: ["note"]
+ banknotes:
+  description: "commandes plugin"
+  usage: "/banknotes <subcommand>"
+  permission: banknotes.command
+ deposit:
+  description: "Déposez une note sur votre compte"
+  usage: "/deposit"
+  permission: banknotes.deposit
+
+permissions:
+ banknotes:
+  default: false
+  description: "permission root de bankNotes"
+  children:
+   banknotes.get:
+    default: true
+    description: "permettre aux joueurs de retirer leurs billets"
+   banknotes.deposit:
+    default: true
+    description: "permettre aux joueurs de déposer des billets"
+   banknotes.command:
+    default: true
+    description: "commandes de plugin comme /banknotes check"
+   banknotes.command.admin:
+    default: false
+    description: "commandes admin comme /banknotes admin reload,validate,devalidate"
